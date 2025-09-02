@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import executions, monitoring, simulator
+from .routers import executions, monitoring
 
 def create_app() -> FastAPI:
     """
@@ -14,7 +14,6 @@ def create_app() -> FastAPI:
             {"name": "executions", "description": "Submit and manage execution requests."},
             {"name": "logs", "description": "Retrieve execution logs and streaming info."},
             {"name": "monitoring", "description": "Self-monitoring, health, and metrics."},
-            {"name": "simulator", "description": "Simulated execution endpoints for developer/test use."},
         ],
     )
 
@@ -29,7 +28,6 @@ def create_app() -> FastAPI:
     # Register routers
     app.include_router(executions.router)
     app.include_router(monitoring.router)
-    app.include_router(simulator.router)
     return app
 
 app = create_app()
